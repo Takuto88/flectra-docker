@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  db:
+    image: "postgres:9.4"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: flectra
+      POSTGRES_PASSWORD: flectra
+    volumes:
+      - "pgdata:/var/lib/postgresql/data"
+    
+
+  flectra:
+    image: "flectrahq/flectra:v1.6.13"
+    ports:
+      - "8080:7073"
+    volumes:
+      - "./addons:/mnt/extra-addons"
+      - "flectra_data:/opt/flectra/.local/share/Flectra"
+      - "./.flectrarc:/opt/flectra/.flectrarc"
+    environment:
+      HOST: "db"
+      USER: "flectra"
+      PASSWORD: "flectra"
+      PORT: "5432"
+    
+volumes:
+  pgdata:
+  flectra_data:

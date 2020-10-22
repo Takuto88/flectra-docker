@@ -1,0 +1,2 @@
+[options]
+addons_path=/opt/flectra/.local/share/Flectra/addons/1.6,/opt/flectra/flectra/addons,/mnt/extra-addons
